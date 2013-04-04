@@ -1,0 +1,109 @@
+/* RESET */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after {
+    content: "";
+    content: none;
+}
+
+q:before, q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* END RESET */
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+#tl{
+    width:400px;
+    height: 1000px;
+    margin-left: 50px;
+    float: left;
+}
+
+.red{
+  background-image: url('../images/tl.jpg');
+  background-position: -60px -20px;
+}
+
+.yellow{
+    background-image: url('../images/tl.jpg');
+    background-position: -450px -20px;
+}
+
+.green{
+    background-image: url('../images/tl.jpg');
+    background-position: -840px -20px;
+}
+
+#buttons{
+    float: left;
+    margin-top: 200px;
+
+}
+
+p{
+    padding:10px 0px 10px 0px;
+}
+
+.answer{
+   width: 50px;
+   height: 50px;
+}
+
+.correct{
+    background-image: url('../images/12161809281371254023jean_victor_balin_tick.svg.med.png');
+    background-size: 50px 50px;
+}
+
+.wrong{
+    background-image: url(../images/12065738771352376078Arnoud999_Right_or_wrong_5.svg.med.png);
+    background-size: 50px 50px;
+}
+
+
+
+#buttons h1{
+    font-family: Arial, sans-serif;
+    font-size:30px;
+    color:#AAA;
+    margin-bottom:30px;
+}
+
+@media (width:1024px)
+and(orientation:landscape){
+
+}
+
