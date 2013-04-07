@@ -1,20 +1,27 @@
 function sm(){
+    
     var commands  = ['go','stop','getReady'];
     var states = ['red','yellow','green'];
     var defaultMethod = wrongAnswer;
-    this.context = new CONTEXT(states,commands,defaultMethod);
+    var context = this.context = new CONTEXT(states,commands,defaultMethod);
 
     //set startTraffic method for green state
     this.context.setMethod('green','go',function(){
         rightAnswer();
+        this.setState('red');
     });
 
-    this.context.setMethod('red','stop',function(){
-        rightAnswer();
-    });
-
+  
     this.context.setMethod('yellow','getReady',function(){
         rightAnswer();
+        this.setState('green');
+    });
+    
+    this.context.setMethod('red','stop',function(){
+        
+        rightAnswer();
+        this.setState('yellow');
+        
     });
 
 
@@ -44,9 +51,10 @@ $(document).ready(function(){
     var machine = new sm();
     $('button').click(function(){
         var action = $(this).data('action');
-        machine.context.currentState[action]();
-        machine.context.setNextState();
-        setTLClass(machine.context.currentState.name);
+        var state = machine.context.currentState();
+        state[action]();
+        console.log(machine.context.currentState().name);
+        setTLClass(machine.context.currentState().name);
     });
 });
 

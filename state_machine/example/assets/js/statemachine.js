@@ -1,6 +1,6 @@
 var CONTEXT = function(states,methods,defaultMethod){
     var Super = this;
-    Super.currentState = '';
+    Super._currentState = '';
     Super.states = {};
     Super.statesCount = 0;
 
@@ -8,6 +8,7 @@ var CONTEXT = function(states,methods,defaultMethod){
     Super.error = function(errorMsg){
         console.error();
     }
+    
     Super.getStateByIndex = function(index){
         for(var i in Super.states){
             if(Super.states[i].index === index){
@@ -15,18 +16,32 @@ var CONTEXT = function(states,methods,defaultMethod){
             }
         }
     }
-
-
-
+    
+    Super.getStateByName = function(stateName){
+         for(var i in Super.states){
+            if(Super.states[i].name === stateName){
+                return Super.states[i];
+            }
+        }
+    }
+    
+    Super.getCurrentState = function(){
+        return Super._currentState;
+    }
 
 
     for(var i = 0 ; i < states.length; i++){
+         var self = this;
         Super.statesCount = i+1;
         Super.states[states[i]] = new Object();
+        Super.states[states[i]]['setState'] = function(state){
+           Super.currentState = Super._currentState = Super.getStateByName(state);
+            return Super.currentState;
+        }
         Super.states[states[i]]['index'] = i;
         if(i === 0){
-            Super.currentState = Super.states[states[i]];
-            Super.currentState.initial = true;
+            Super._currentState = Super.states[states[i]];
+            Super._currentState.initial = true;
         }
         Super.states[states[i]]['name'] = states[i];
         for(var j in methods){
@@ -38,7 +53,9 @@ var CONTEXT = function(states,methods,defaultMethod){
 
     //PUBLIC METHODS
     return {
-        currentState: Super.currentState,
+        currentState: function(){
+            return Super.getCurrentState();
+        },
         getMethodFromCurrentState:function(method){
 
             return Super.currentState[method]();
@@ -55,15 +72,15 @@ var CONTEXT = function(states,methods,defaultMethod){
             switch (Super.currentState.index){
                 case 0:
                     console.log()
-                    self.currentState = Super.currentState = Super.getStateByIndex(1);
+                    self.currentState = Super._currentState = Super.getStateByIndex(1);
                     break;
                 case Super.statesCount-1:
-                    self.currentState = Super.currentState = Super.getStateByIndex(0);
+                    self.currentState = Super._currentState = Super.getStateByIndex(0);
                     break;
                 default :
-                    self.currentState = Super.currentState = Super.getStateByIndex(Super.currentState.index+1);
+                    self.currentState = Super._currentState = Super.getStateByIndex(Super.currentState.index+1);
             }
-            console.log(Super.currentState);
+           
         }
     }
 }
